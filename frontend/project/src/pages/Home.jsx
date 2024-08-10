@@ -7,7 +7,7 @@ import Form from '../components/Form';
 const options = [
   { id: 1, label: 'Home' },
   { id: 2, label: 'KissanGPT' },
-  { id: 3, label: 'Form' },
+  { id: 3, label: 'CropAdvisor' },
 ];
 
 const Home = () => {
