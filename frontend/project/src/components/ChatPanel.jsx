@@ -10,6 +10,9 @@ const ChatPanel = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [language, setLanguage] = useState('en-US'); // State to toggle language
   const chatEndRef = useRef(null);
+  useEffect(() => {
+    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+}, [chatLog]);
 
   useEffect(() => {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -106,8 +109,8 @@ const ChatPanel = () => {
   };
 
   return (
-    <div className="flex-1 bg-white p-4 flex flex-col">
-      <h2 className="text-lg font-bold">Chatbot</h2>
+    <div className="flex-1 bg-white p-4 flex flex-col  h-full overflow-y-auto">
+      <h2 className="text-lg font-bold">KisanGPT</h2>
       <div className="flex-1 h-96 overflow-y-scroll p-4 border border-gray-200">
         {chatLog.map((entry, index) => (
           <div key={index} className="mb-2">
@@ -117,27 +120,19 @@ const ChatPanel = () => {
           </div>
         ))}
         {isLoading && (
-          <div className="flex flex-col gap-4 mt-4">
-            <div className="skeleton h-2 w-76"></div>
-            <div className="skeleton h-2 w-76"></div>
-            <div className="skeleton h-2 w-76"></div>
-          </div>
+          <span className="loading loading-dots loading-lg"></span>
         )}
         <div ref={chatEndRef} />
       </div>
       <div className="flex items-center space-x-2">
         <button
           onClick={isListening ? handleStop : handleStart}
-          className={`py-2 px-4 ${isListening ? 'bg-red-500' : 'bg-blue-500'} text-white`}
+          className={`py-2 px-4 ${isListening ? 'btn-error' : 'btn-accent'} mt-1 text-white btn btn-outline btn-accent`}
         >
           {isListening ? 'Stop' : 'Speak'}
         </button>
-        <button
-          onClick={toggleLanguage}
-          className="py-2 px-4 bg-yellow-500 text-white"
-        >
+        <input type="checkbox" class="toggle toggle-success" defaultChecked onClick={toggleLanguage}/>
           Toggle Language (Current: {language})
-        </button>
         <input
           type="text"
           value={input}
@@ -145,12 +140,12 @@ const ChatPanel = () => {
           onKeyDown={(e) => {
             if (e.key === 'Enter') handleSendMessage(input);
           }}
-          className="flex-1 py-2 px-4 border border-gray-200"
+          className="input input-bordered input-accent w-full max-w-xs flex-1 text-white"
           placeholder="Type a message..."
         />
         <button
           onClick={() => handleSendMessage(input)}
-          className="py-2 px-4 bg-green-500 text-white"
+          className="py-2 px-4  mt-1 text-white btn btn-outline btn-accent"
         >
           Send
         </button>

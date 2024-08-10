@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Navbar from '../components/Navbar';
 import OptionsPanel from '../components/OptionPanel';
 import ChatPanel from '../components/ChatPanel';
 import Form from '../components/Form';
-import Account from '../components/Account';
 
 const options = [
   { id: 1, label: 'Home' },
@@ -13,28 +11,31 @@ const options = [
 ];
 
 const Home = () => {
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedOption, setSelectedOption] = useState(2); 
   const navigate = useNavigate();
 
   const handleOptionSelect = (option) => {
-    setSelectedOption(option);
+    setSelectedOption(option.id);
 
     if (option.id === 1) {
-      navigate('/'); // Navigates to the home page when "Home" is selected
+      navigate('/'); 
     }
   };
 
   const renderContent = () => {
-    switch (selectedOption?.id) {
+    switch (selectedOption) {
       case 2:
         return <ChatPanel />;
       case 3:
         return <Form />;
-      
       default:
         return <div className="p-4">Please select an option.</div>;
     }
   };
+
+  useEffect(() => {
+    setSelectedOption(2);
+  }, []);
 
   return (
     <div className="flex h-screen w-screen flex-col">

@@ -32,31 +32,48 @@ const Hero = () => {
                         Welcome To The Future of Farming
                     </span>
                 </h1>
+                <div className="mt-8 flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
+    <Link to="/home" className="bt px-4 py-2 font-bold text-md rounded-lg transition ease-in-out transform hover:scale-105 hover:shadow-lg">
+        <button style={{
+            background: 'linear-gradient(90deg, #A8E063 0%, #56AB2F 50%, #A8E063 100%)',
+            WebkitBackgroundClip: 'text',
+            color: 'transparent',
+            fontSize: '20px',
+            padding: '8px 16px',
+            borderRadius: '10px',
+            boxShadow: '3px 3px 10px rgba(0, 0, 0, 0.2)',
+            transition: 'all 0.3s ease',
+        }}
+        onMouseOver={(e) => {
+            e.currentTarget.style.background = 'linear-gradient(90deg, #56AB2F 0%, #A8E063 100%)';
+            e.currentTarget.style.color = '#000';
+        }}>
+            Get Started
+        </button>
+    </Link>
+    <Link to="/home" className="bt px-4 py-2 font-bold text-md rounded-lg transition ease-in-out transform hover:scale-105 hover:shadow-lg">
+        <button style={{
+            background: 'linear-gradient(90deg, #A8E063 0%, #56AB2F 50%, #A8E063 100%)',
+            WebkitBackgroundClip: 'text',
+            color: 'transparent',
+            fontSize: '20px',
+            padding: '8px 16px',
+            borderRadius: '10px',
+            boxShadow: '3px 3px 10px rgba(0, 0, 0, 0.2)',
+            transition: 'all 0.3s ease',
+        }}
+        onMouseOver={(e) => {
+            e.currentTarget.style.background = 'linear-gradient(90deg, #56AB2F 0%, #A8E063 100%)';
+            e.currentTarget.style.color = '#000';
+        }}
+        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
+        >
+            Learn More
+        </button>
+    </Link>
+</div>
 
-                <div className="mt-8 flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 ">
-                <Link to="/home" className="bt px-4 py-2 font-bold text-md rounded-lg transition ease-in-out hover:bg-lime-500">
-                    <button style={{
-                      background: 'linear-gradient(90deg, #F3CA52 0%, #F6EEC9 50%, #FFC100 100%)',
-                      WebkitBackgroundClip: 'text',
-                      color: 'transparent',
-                            fontSize:'20px',
-                            boxShadow:'black 5px 5px 3px',
-                            padding:'5px',
-                          }}>
-                        Get Started
-                    </button>
-                    </Link>
-                    <button style={{
-                      background: 'linear-gradient(90deg, #F3CA52 0%, #F6EEC9 50%, #FFC100 100%)',
-                      WebkitBackgroundClip: 'text',
-                      color: 'transparent',
-                      fontSize:'20px',
-                      boxShadow:'black 5px 5px 3px',
-                      padding:'5px',
-                    }}>
-                        Learn More
-                    </button>
-                </div>
+
             </div>
 
             <div className="absolute inset-0 pointer-events-none">
