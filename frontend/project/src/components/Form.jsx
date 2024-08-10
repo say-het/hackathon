@@ -92,7 +92,7 @@ const FarmerForm = () => {
                     
                     ) : (
                         <>
-                            <h2 className="text-lg font-bold mb-4 text-center text-black">Farmer Details</h2>
+                            <h2 className="text-lg font-bold mb-4 text-center text-black">Farm Details</h2>
                             <form onSubmit={handleSubmit}>
                                 <div className="grid grid-cols-1 gap-4 mb-4">
                                     <div>
