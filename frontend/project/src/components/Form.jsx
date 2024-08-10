@@ -70,7 +70,7 @@ const FarmerForm = () => {
                 alt="Background"
                 className="absolute inset-0 w-full h-full object-cover z-0"
             />
-            <div className="relative z-10 flex justify-center items-center min-h-screen bg-black bg-opacity-10">
+            <div className="relative  flex justify-center items-center min-h-screen bg-black bg-opacity-10">
                 <div className="max-w-2xl p-6 bg-white/20 rounded-xl shadow border border-black my-5 w-96">
                     <h2 className="text-lg font-bold mb-4 text-center text-black">Farmer Details</h2>
                     <form onSubmit={handleSubmit}>

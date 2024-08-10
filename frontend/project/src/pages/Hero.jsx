@@ -1,5 +1,7 @@
 import React from 'react';
 import vid from '../assets/video.mp4'
+import { Link } from 'react-router-dom';
+
 import Navbar from '../components/Navbar';
 
 const Hero = () => {
@@ -32,6 +34,7 @@ const Hero = () => {
                 </h1>
 
                 <div className="mt-8 flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 ">
+                <Link to="/home" className="bt px-4 py-2 font-bold text-md rounded-lg transition ease-in-out hover:bg-lime-500">
                     <button style={{
                       background: 'linear-gradient(90deg, #F3CA52 0%, #F6EEC9 50%, #FFC100 100%)',
                       WebkitBackgroundClip: 'text',
@@ -42,6 +45,7 @@ const Hero = () => {
                           }}>
                         Get Started
                     </button>
+                    </Link>
                     <button style={{
                       background: 'linear-gradient(90deg, #F3CA52 0%, #F6EEC9 50%, #FFC100 100%)',
                       WebkitBackgroundClip: 'text',
