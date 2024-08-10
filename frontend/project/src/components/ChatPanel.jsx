@@ -97,7 +97,7 @@ const ChatPanel = () => {
 
       if (response.status === 200) {
         const { newdata } = response.data;
-        setChatLog((prevLog) => [...prevLog, { sender: 'bot', message: newdata }]);
+        setChatLog((prevLog) => [...prevLog, { sender: 'KisanGPT', message: newdata }]);
       } else {
         console.error('Error fetching the API');
       }
