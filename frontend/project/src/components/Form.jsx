@@ -100,7 +100,7 @@ const FarmerForm = () => {
                                             pH of Soil
                                         </label>
                                         <input
-                                            className="block w-full p-2 border bg-white text-black border-gray-300 rounded"
+                                            className="input input-bordered input-accent  max-w-xs flex-1 text-whiteblock w-full p-2 border bg-white text-black border-gray-300 rounded"
                                             type="text"
                                             id="ph"
                                             name="ph"
@@ -113,7 +113,7 @@ const FarmerForm = () => {
                                             Nitrogen Content (kg/ha)
                                         </label>
                                         <input
-                                            className="block w-full bg-white text-black p-2 border border-gray-300 rounded"
+                                            className="input input-bordered input-accent  max-w-xs flex-1 text-whiteblock w-full p-2 border bg-white text-black border-gray-300 rounded"
                                             type="text"
                                             id="nitrogenContent"
                                             name="nitrogenContent"
@@ -126,7 +126,7 @@ const FarmerForm = () => {
                                             Phosphorous Content (kg/ha)
                                         </label>
                                         <input
-                                            className="block w-full bg-white text-black p-2 border border-gray-300 rounded"
+                                            className="input input-bordered input-accent  max-w-xs flex-1 text-whiteblock w-full p-2 border bg-white text-black border-gray-300 rounded"
                                             type="text"
                                             id="phosphorousContent"
                                             name="phosphorousContent"
@@ -139,7 +139,7 @@ const FarmerForm = () => {
                                             Potassium Content (kg/ha)
                                         </label>
                                         <input
-                                            className="block w-full bg-white text-black p-2 border border-gray-300 rounded"
+                                            className="input input-bordered input-accent  max-w-xs flex-1 text-whiteblock w-full p-2 border bg-white text-black border-gray-300 rounded"
                                             type="text"
                                             id="potassiumContent"
                                             name="potassiumContent"
@@ -149,12 +149,12 @@ const FarmerForm = () => {
                                     </div>
                                 </div>
                                 <button
-                                    className="text-black font-bold py-2 px-4 rounded ml-28 shadow-lg"
-                                    style={{ backgroundColor: '#FFC100' }}
-                                    type="submit"
-                                >
-                                    Submit
-                                </button>
+    className="font-bold rounded-lg ml-28 shadow-lg py-2 px-4 mt-1 text-black btn btn-outline btn-warning bg-white-400 hover:bg-yellow-500"
+    type="submit"
+>
+    Submit
+</button>
+
                             </form>
                         </>
                     )}

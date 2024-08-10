@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import OptionsPanel from '../components/OptionPanel';
 import ChatPanel from '../components/ChatPanel';
 import Form from '../components/Form';
@@ -13,6 +13,7 @@ const options = [
 const Home = () => {
   const [selectedOption, setSelectedOption] = useState(2); 
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleOptionSelect = (option) => {
     setSelectedOption(option.id);
@@ -34,8 +35,15 @@ const Home = () => {
   };
 
   useEffect(() => {
-    setSelectedOption(2);
-  }, []);
+    const searchParams = new URLSearchParams(location.search);
+    const option = searchParams.get('option');
+    
+    if (option === 'form') {
+      setSelectedOption(3);
+    } else {
+      setSelectedOption(2);
+    }
+  }, [location.search]);
 
   return (
     <div className="flex h-screen w-screen flex-col">
