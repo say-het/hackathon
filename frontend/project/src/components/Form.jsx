@@ -75,7 +75,7 @@ const FarmerForm = () => {
                 <div className="max-w-2xl p-6 bg-white/20 rounded-xl shadow border border-black my-5 w-96">
                     {isSubmitted ? (
                         <div>
-                        <h2 className="text-lg font-bold mb-4 text-center text-black">Submission Result</h2>
+                        <h2 className="text-lg font-bold mb-4 text-center text-black">Based on our <b style={{color:'green'}}>Deep Learning Analysis</b> We suggest that you should grow 👇🏽 </h2>
                         <div className="text-center text-black">
                             {Array.isArray(result) ? (
                                 result.map((item, index) => (
