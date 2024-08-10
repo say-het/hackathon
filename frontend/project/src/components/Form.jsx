@@ -79,13 +79,16 @@ const FarmerForm = () => {
                         <div className="text-center text-black">
                             {Array.isArray(result) ? (
                                 result.map((item, index) => (
-                                    <p key={index} className="mb-2">{item}</p>
+                                    <p key={index} className="mb-2">
+                                        {`${index + 1}. ${item}`}
+                                    </p>
                                 ))
                             ) : (
                                 <p>{result}</p> // If result is not an array, display it as a single item
                             )}
                         </div>
                     </div>
+                    
                     
                     ) : (
                         <>
