@@ -6,6 +6,18 @@ import torch
 import torch.nn as nn
 import pandas as pd
 from sklearn.model_selection import train_test_split
+from flask import Flask, send_from_directory
+
+app = Flask(__name__, static_folder='../frontend/build')
+
+@app.route('/')
+def serve():
+    return send_from_directory(app.static_folder, 'index.html')
+
+@app.route('/<path:path>')
+def static_proxy(path):
+    return send_from_directory(app.static_folder, path)
+
 
 # Configure your Gemini API key
 GEMINI_API_KEY = "AIzaSyC0LrYBBZY6ok_IM3eD0FuINlhj5qg_37w"
