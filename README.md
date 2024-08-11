@@ -36,9 +36,12 @@ We are committed to continuously enhancing the AgriTech AI Suite to provide even
 **Home Page**
 ![Screenshot 2024-08-10 194643](https://github.com/user-attachments/assets/eee1f5c5-a983-4410-9f5a-609e01296cc6)
 **Deep Learning Model**
-![Screenshot 2024-08-10 194718](https://github.com/user-attachments/assets/301bf9d5-8fcc-45e5-90d1-4f2263c97d9f)
+![Screenshot 2024-08-11 094821](https://github.com/user-attachments/assets/c90683c4-729b-4387-911d-8099b41b1a0e)
+**Processing**
+![Screenshot 2024-08-11 094852](https://github.com/user-attachments/assets/ce19059c-4f2b-43bb-a073-1f933a76ca54)
+
 **Final Prediction**
-![Screenshot 2024-08-10 194744](https://github.com/user-attachments/assets/5390d090-d33c-4073-8342-f69f24584024)
+![Screenshot 2024-08-11 094911](https://github.com/user-attachments/assets/cee75534-c2eb-4142-affd-5d3891ff8ece)
 **The AMAZING - KissanGPT**
 ![Screenshot 2024-08-10 194903](https://github.com/user-attachments/assets/e6514152-4cf6-4354-9452-dad3127c1f1f)
 **Multi Language Support**
