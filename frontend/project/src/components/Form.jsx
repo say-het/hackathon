@@ -162,7 +162,7 @@ console.log(`Acres: ${acres1.toFixed(2)}, ${acres2.toFixed(2)}, ${acres3.toFixed
                                         {`${index + 1}. ${item}  - Allocate ${result.acresAllocated[`acres${index + 1}`].toFixed(2)} acres`}
                                     </p>
                                 ))}
-                                These crops should be most sustainable for you
+                                <h1 className='font-bold'>These crops should be most sustainable for you</h1>
                             </div>
                             {weather && (
                                 <div className="mt-6 text-black text-center">
