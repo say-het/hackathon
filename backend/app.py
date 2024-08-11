@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 import google.generativeai as genai
 import pyowm
@@ -6,10 +6,11 @@ import torch
 import torch.nn as nn
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from flask import Flask, send_from_directory
+import os
 
-app = Flask(__name__, static_folder='../frontend/build')
+app = Flask(__name__, static_folder='../frontend/project/build')
 
+# Serve React frontend
 @app.route('/')
 def serve():
     return send_from_directory(app.static_folder, 'index.html')
@@ -18,7 +19,6 @@ def serve():
 def static_proxy(path):
     return send_from_directory(app.static_folder, path)
 
-
 # Configure your Gemini API key
 GEMINI_API_KEY = "AIzaSyC0LrYBBZY6ok_IM3eD0FuINlhj5qg_37w"
 genai.configure(api_key=GEMINI_API_KEY)
@@ -26,14 +26,8 @@ genai.configure(api_key=GEMINI_API_KEY)
 # Initialize the generative model
 model = genai.GenerativeModel('gemini-1.5-flash')
 
-# Initialize Flask app
-app = Flask(__name__)
-
-
 # Set up CORS to allow requests from frontend
-CORS(app, resources={r"/api/*": {"origins": "http://localhost:5173"}}, methods=["GET", "POST"], allow_headers=["Content-Type", "Authorization"], supports_credentials=True)
-
-
+CORS(app, resources={r"/api/*": {"origins": "*"}}, methods=["GET", "POST"], allow_headers=["Content-Type", "Authorization"], supports_credentials=True)
 
 # Load data
 data = pd.read_csv('Crop_recommendationEnglish.csv')
@@ -144,54 +138,57 @@ def responce(data):
 data = [90, 42, 43, 20.87974371, 82.00274423, 6.502985292, 202.9355362]
 print(responce(data))
 
-
 @app.route('/api/gnss',methods=['POST'])
 def gnssAnalysis():
-    data = request.get_json()
-    prediction = responce(data['attr'])
-    return jsonify({"pred": prediction})
+    try:
+        data = request.get_json()
+        prediction = responce(data['attr'])
+        return jsonify({"pred": prediction})
+    except Exception as e:
+        print(f"Error: {e}")
+        return jsonify({"error": "An error occurred during processing"}), 500
 
 @app.route('/api/currentWeather', methods=['POST'])
 def currWeather():
-    data = request.json
-    lat = data.get('lat')
-    lon = data.get('long')
-    owm = pyowm.OWM('bee8db7d50a4b777bfbb9f47d9beb7d0')  # Replace with your actual OWM API key
+    try:
+        data = request.json
+        lat = data.get('lat')
+        lon = data.get('long')
+        owm = pyowm.OWM("bee8db7d50a4b777bfbb9f47d9beb7d0")
 
-    mgr = owm.weather_manager()
-    observation = mgr.weather_at_coords(lat, lon)
-    weather = observation.weather
+        mgr = owm.weather_manager()
+        observation = mgr.weather_at_coords(lat, lon)
+        weather = observation.weather
 
-    weather_data = {
-        'status': weather.detailed_status,
-        'temperature': weather.temperature('celsius'),
-        'humidity': weather.humidity,
-        'wind_speed': weather.wind()['speed'],
-    }
+        weather_data = {
+            'status': weather.detailed_status,
+            'temperature': weather.temperature('celsius'),
+            'humidity': weather.humidity,
+            'wind_speed': weather.wind()['speed'],
+        }
 
-    return jsonify(weather_data)
-
+        return jsonify(weather_data)
+    except Exception as e:
+        print(f"Error: {e}")
+        return jsonify({"error": "An error occurred during processing"}), 500
 
 @app.route('/api/ask', methods=['POST'])
 def ask():
     try:
-        # Handle POST requests
         data = request.get_json()
-        query = data['message']  # Ensure this key matches the frontend
+        query = data['message']
         response = model.generate_content(query)
         ans = response.text
-        finalans = ans.replace("*","")
-        finalans = finalans.replace("#","")
+        finalans = ans.replace("*", "").replace("#", "")
         return jsonify({"newdata": finalans})
     except Exception as e:
         print(f"Error: {e}")
         return jsonify({"error": "An error occurred during processing"}), 500
+
 @app.route('/api/weather', methods=['POST'])
 def get_weather_details():
     try:
-        # Parse the JSON data from the request
         data = request.get_json()
-        # Extract the latitude, longitude, and form data from the request
         latitude = data['lat']
         longitude = data['long']
         nitrogen_content = float(data['nitrogenContent'])
@@ -199,48 +196,36 @@ def get_weather_details():
         potassium_content = float(data['potassiumContent'])
         ph = float(data['ph'])
 
-        # Initialize the pyowm client
-        owm = pyowm.OWM('bee8db7d50a4b777bfbb9f47d9beb7d0')  # Replace with your actual OWM API key
+        owm = pyowm.OWM("bee8db7d50a4b777bfbb9f47d9beb7d0")
         mgr = owm.weather_manager()
 
-        # Get weather details using the coordinates
         observation = mgr.weather_at_coords(latitude, longitude)
         weather = observation.weather
 
-        # Extract temperature, humidity, and rain data
         temp = weather.temperature('celsius')['temp']
         humidity = weather.humidity
         rain = weather.rain.get('1h', 0)
 
-        # Prepare the details list in the specified format
         details = [
-            nitrogen_content,  # N
-            phosphorous_content,  # P
-            potassium_content,  # K
-            temp,  # Temperature
-            humidity,  # Humidity
-            ph,  # pH
-            rain  # Rainfall
+            nitrogen_content,
+            phosphorous_content,
+            potassium_content,
+            temp,
+            humidity,
+            ph,
+            rain
         ]
 
-        # Convert the details to a PyTorch tensor and process it
-        # input_tensor = torch.tensor(details).float()
-
-        # Assuming `responce(input_tensor)` is a function that processes the tensor
         finalres = responce(details)
 
-        # Return the result as a JSON response
         return jsonify({'result': finalres})
-
     except Exception as e:
         print(f"Error: {e}")
         return jsonify({'error': str(e)}), 500
-
-@app.route('/api/', methods=['POST'])
 
 @app.route('/api', methods=['GET'])
 def dummy():
     return "OK WORKS"
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0',port=5000)
+    app.run(host='0.0.0.0', port=5000)
