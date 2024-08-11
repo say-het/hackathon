@@ -36,7 +36,7 @@ CORS(app, resources={r"/api/*": {"origins": "http://localhost:5173"}}, methods=[
 
 
 # Load data
-data = pd.read_csv('C:\\Users\\Het Ashishbhai Modi\\Desktop\\project\\backend\\Crop_recommendationEnglish.csv')
+data = pd.read_csv('https://drive.google.com/file/d/11h6c0Eo_6VwbLxTZbP8tTqFSBJ2tZtE6/view?usp=sharing')
 
 # Label encoding
 codes = {
