@@ -139,6 +139,25 @@ def gnssAnalysis():
     prediction = responce(data['attr'])
     return jsonify({"pred": prediction})
 
+@app.route('/api/currentWeather', methods=['POST'])
+def currWeather():
+    data = request.json
+    lat = data.get('lat')
+    lon = data.get('long')
+    owm = pyowm.OWM('bee8db7d50a4b777bfbb9f47d9beb7d0')  # Replace with your actual OWM API key
+
+    mgr = owm.weather_manager()
+    observation = mgr.weather_at_coords(lat, lon)
+    weather = observation.weather
+
+    weather_data = {
+        'status': weather.detailed_status,
+        'temperature': weather.temperature('celsius'),
+        'humidity': weather.humidity,
+        'wind_speed': weather.wind()['speed'],
+    }
+
+    return jsonify(weather_data)
 
 
 @app.route('/api/ask', methods=['POST'])
@@ -205,6 +224,7 @@ def get_weather_details():
         print(f"Error: {e}")
         return jsonify({'error': str(e)}), 500
 
+@app.route('/api/', methods=['POST'])
 
 @app.route('/api', methods=['GET'])
 def dummy():
