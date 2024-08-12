@@ -64,7 +64,7 @@ if CUDA:
 
 # Loss and optimizer
 criterion = nn.CrossEntropyLoss()
-optimizer = torch.optim.Adam(net.parameters(), lr=0.001, amsgrad=True)
+optimizer = torch.optim.Adam(net.parameters(), lr=0.005, amsgrad=True)
 
 # Training loop
 epochs = 50
@@ -111,5 +111,5 @@ def responce(data):
     return predicted_crops
 
 # Testing the function
-data = [90, 42, 43, 20.87974371, 82.00274423, 6.502985292, 202.9355362]
+data = [90, 42, 43, 20.87974371, 82.00274423, 6.9078, 202.9355362]
 print(responce(data))
