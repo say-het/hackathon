@@ -1,6 +1,6 @@
 # 🌾 Welcome to AgrIculture AI🌾
 
-**AgriTech AI ** is an innovative platform designed to revolutionize the agricultural landscape by leveraging the power of Artificial Intelligence and Deep Learning. Our suite includes **KissanGPT** and **CropAdvisor**, two cutting-edge tools tailored to optimize farming practices, enhance crop yields, and maximize profitability.
+**AgriTech AI** is an innovative platform designed to revolutionize the agricultural landscape by leveraging the power of Artificial Intelligence and Deep Learning. Our suite includes **KissanGPT** and **CropAdvisor**, two cutting-edge tools tailored to optimize farming practices, enhance crop yields, and maximize profitability.
 
 ## 🚜 KissanGPT - Agriculture AI
 
